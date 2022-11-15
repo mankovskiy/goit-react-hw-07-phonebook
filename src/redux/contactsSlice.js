@@ -40,7 +40,6 @@ export const contactsSlice = createSlice({
       state.contacts.isLoading = true;
     },
     [deleteContact.fulfilled](state, action) {
-      console.log('adsasdfasf');
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.contacts.items = state.contacts.items.filter(
