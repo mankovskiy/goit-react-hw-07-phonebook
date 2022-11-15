@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ContactListItem } from '../ContactListItem/ContactListItem';
 import { List } from './ContactList.styled';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 export const ContactList = () => {
-  const { contacts } = useSelector(state => state.contacts);
-
-  const filter = useSelector(state => state.contacts.filter);
+  const contacts = useSelector(selectContacts);
+  console.log(contacts);
+  const filter = useSelector(selectFilter);
 
   const filterValue = filter.toLowerCase().trim();
 
@@ -22,10 +23,10 @@ export const ContactList = () => {
         </p>
       )}
       <ul>
-        {filterContacts.map(({ id, name, number }) => {
+        {filterContacts.map(({ id, name, phone }) => {
           return (
             <List key={id}>
-              <ContactListItem id={id} name={name} number={number} />
+              <ContactListItem id={id} name={name} number={phone} />
             </List>
           );
         })}

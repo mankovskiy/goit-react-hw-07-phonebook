@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { handleAddContact } from 'redux/contactsSlice';
+// import { handleAddContact } from 'redux/contactsSlice';
 import { Form } from './ContactForm.stuled';
 import { AddBtn } from './ContactForm.stuled';
 import { Input } from './ContactForm.stuled';
+import { addContact } from 'redux/operations';
 
 import PropTypes from 'prop-types';
 import { ContactFormLabel } from './ContactForm.stuled';
@@ -26,7 +27,7 @@ export function ContactForm() {
       number,
     };
     console.log(contact);
-    dispatch(handleAddContact(contact));
+    dispatch(addContact(contact));
     reset();
   };
 

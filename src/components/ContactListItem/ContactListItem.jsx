@@ -1,13 +1,14 @@
 import { DeleteBtn } from './ContactListItem.styled';
 import { useDispatch } from 'react-redux';
-import { handleDeleteContact } from 'redux/contactsSlice';
+// import { handleDeleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { WrapName } from './ContactListItem.styled';
+import { deleteContact } from 'redux/operations';
 export function ContactListItem({ id, name, number }) {
   const dispatch = useDispatch();
 
-  const deleteContact = () => {
-    dispatch(handleDeleteContact(id));
+  const handleDeleteContact = () => {
+    dispatch(deleteContact(id));
   };
   return (
     <>
@@ -15,7 +16,7 @@ export function ContactListItem({ id, name, number }) {
         <p>name: {name} </p>
         <p>number: {number} </p>
       </WrapName>
-      <DeleteBtn onClick={deleteContact}>delete</DeleteBtn>
+      <DeleteBtn onClick={handleDeleteContact}>delete</DeleteBtn>
     </>
   );
 }
