@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { handleAddContact } from 'redux/contactsSlice';
 import { Form } from './ContactForm.stuled';
 import { AddBtn } from './ContactForm.stuled';
 import { Input } from './ContactForm.stuled';
 import { addContact } from 'redux/operations';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 import PropTypes from 'prop-types';
+
 import { ContactFormLabel } from './ContactForm.stuled';
 
 export function ContactForm() {
@@ -15,19 +17,19 @@ export function ContactForm() {
   const dispatch = useDispatch();
 
   const handleChangeInput = e => {
-    console.log(e.target);
     const { value } = e.target;
     e.target.name === 'name' ? setName(value) : setNumber(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    // notify();
     const contact = {
       name,
       number,
     };
-    console.log(contact);
     dispatch(addContact(contact));
+
     reset();
   };
 
@@ -61,6 +63,18 @@ export function ContactForm() {
       <AddBtn type="submit" disabled={name === '' || (number === '' && true)}>
         add contact
       </AddBtn>
+      {/* <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      /> */}
     </Form>
   );
 }

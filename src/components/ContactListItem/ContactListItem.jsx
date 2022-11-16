@@ -1,12 +1,13 @@
 import { DeleteBtn } from './ContactListItem.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import BeatLoader from 'react-spinners/BeatLoader';
-// import { handleDeleteContact } from 'redux/contactsSlice';
 import PropTypes from 'prop-types';
 import { WrapName } from './ContactListItem.styled';
 import { deleteContact } from 'redux/operations';
-import { selectIsLoading, selectError, selectContacts } from 'redux/selectors';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export function ContactListItem({ id, name, number }) {
   const [isBtnSpiner, setIsBtnSpiner] = useState(false);
@@ -15,15 +16,16 @@ export function ContactListItem({ id, name, number }) {
   const handleDeleteContact = () => {
     dispatch(deleteContact(id));
     setIsBtnSpiner(true);
+    notify();
   };
 
   const btnSpiner = (
     <BeatLoader color="#787e7d" size={5} speedMultiplier={1} margin={3} />
   );
+  const notify = () => {
+    toast.info(`'Delete contact: ${name} !'`);
+  };
 
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  // const isVisibleDeletContact = useSelector(selectContacts);
   return (
     <>
       <WrapName>

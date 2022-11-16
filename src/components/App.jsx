@@ -5,6 +5,7 @@ import { ContactList } from './ContactList/ContactList';
 import { selectIsLoading, selectError } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
 import BeatLoader from 'react-spinners/BeatLoader';
+import { ToastContainer } from 'react-toastify';
 
 import { Filter } from './Filter/Filter';
 
@@ -29,10 +30,21 @@ export function App() {
       <Box p={20}>
         <h2>Contacts</h2>
         <Filter />
-        {/* {isLoading && !error && <b>Request in progress...</b>} */}
         {error && <b>{error}</b>}
         <ContactList />
       </Box>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Box>
   );
 }

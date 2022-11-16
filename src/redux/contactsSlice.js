@@ -5,6 +5,7 @@ import {
   deleteContact,
   setFilterValue,
 } from './operations';
+import { toast } from 'react-toastify';
 
 const contactInitialState = {
   contacts: { items: [], isLoading: false, error: null },
@@ -36,14 +37,13 @@ export const contactsSlice = createSlice({
       if (
         state.contacts.items.some(cont => cont.name === action.payload.name)
       ) {
-        alert('Contact alredy exist');
-        return;
+        toast.warn('Contact alredy exist');
+      } else {
+        toast.info(`'Add new contact' ${action.payload.name}`);
       }
       state.contacts.items.push(action.payload);
     },
-    // [deleteContact.pending](state) {
-    //   state.contacts.isLoading = true;
-    // },
+
     [deleteContact.fulfilled](state, action) {
       state.contacts.isLoading = false;
       state.contacts.error = null;
@@ -62,7 +62,6 @@ export const contactsSlice = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.filter = action.payload;
-      console.log(action.payload);
     },
     [setFilterValue.rejected](state, action) {
       state.contacts.isLoading = false;
@@ -71,31 +70,4 @@ export const contactsSlice = createSlice({
   },
 });
 
-// export const { handleAddContact, handleDeleteContact, setFilterValue } =
-//   contactsSlice.actions;
 export const contactsReduser = contactsSlice.reducer;
-//    handleAddContact: reducer(state, action) {
-// if (state.contacts.some(cont => cont.name === action.payload.name)) {
-//   alert('Contact alredy exist');
-//   return;
-// }
-// state.contacts.push(action.payload);
-//     },
-//     prepare({ name, number }) {
-//       return {
-//         payload: {
-//           id: nanoid(),
-//           name: name,
-//           number: number,
-//         },
-//       };
-//     },
-//   },
-
-//   handleDeleteContact(state, action) {
-// state.contacts = state.contacts.filter(
-//   contact => contact.id !== action.payload
-// );
-//   },
-//   setFilterValue(state, action) {
-//     state.filter = action.payload;
