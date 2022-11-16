@@ -23,7 +23,6 @@ export function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // notify();
     const contact = {
       name,
       number,
@@ -63,18 +62,6 @@ export function ContactForm() {
       <AddBtn type="submit" disabled={name === '' || (number === '' && true)}>
         add contact
       </AddBtn>
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      /> */}
     </Form>
   );
 }

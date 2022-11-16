@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { ContactListItem } from '../ContactListItem/ContactListItem';
 import { List } from './ContactList.styled';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectContacts, selectFilter, selectError } from 'redux/selectors';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
+  const error = useSelector(selectError);
   const filter = useSelector(selectFilter);
   const filterValue = filter.toLowerCase().trim();
 
@@ -13,7 +14,9 @@ export const ContactList = () => {
     contact.name.toLowerCase().includes(filterValue)
   );
 
-  return (
+  return error ? (
+    <b>no network</b>
+  ) : (
     <>
       {contacts.length === 0 && (
         <p>
