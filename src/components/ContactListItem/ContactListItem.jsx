@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { WrapName } from './ContactListItem.styled';
 import { deleteContact } from 'redux/operations';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,15 +16,12 @@ export function ContactListItem({ id, name, number }) {
   const handleDeleteContact = () => {
     dispatch(deleteContact(id));
     setIsBtnSpiner(true);
-    notify();
+    toast.info(`'Delete contact: ${name} !'`);
   };
 
   const btnSpiner = (
     <BeatLoader color="#787e7d" size={5} speedMultiplier={1} margin={3} />
   );
-  const notify = () => {
-    toast.info(`'Delete contact: ${name} !'`);
-  };
 
   return (
     <>
