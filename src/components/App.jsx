@@ -4,14 +4,15 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { selectIsLoading, selectError } from 'redux/selectors';
 import { fetchContacts } from 'redux/operations';
+import BeatLoader from 'react-spinners/BeatLoader';
 
-// import { Filter } from './Filter/Filter';
+import { Filter } from './Filter/Filter';
 
 import { Box } from './Box/Box';
 
 export function App() {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {
@@ -23,10 +24,11 @@ export function App() {
       <Box p={20}>
         <Box as="h2">Phonebook</Box>
         <ContactForm />
+        {isLoading && !error && <BeatLoader />}
       </Box>
       <Box p={20}>
         <h2>Contacts</h2>
-        {/* <Filter /> */}
+        <Filter />
         {/* {isLoading && !error && <b>Request in progress...</b>} */}
         {error && <b>{error}</b>}
         <ContactList />

@@ -40,3 +40,16 @@ export const deleteContact = createAsyncThunk(
     }
   }
 );
+
+export const setFilterValue = createAsyncThunk(
+  'contactsFilter/fetchAll',
+  async (value, thunkAPI) => {
+    try {
+      const response = value;
+      console.log(response);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

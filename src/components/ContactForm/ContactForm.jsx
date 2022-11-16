@@ -58,7 +58,9 @@ export function ContactForm() {
         required
         value={number}
       />
-      <AddBtn type="submit">add contact</AddBtn>
+      <AddBtn type="submit" disabled={name === '' || (number === '' && true)}>
+        add contact
+      </AddBtn>
     </Form>
   );
 }
