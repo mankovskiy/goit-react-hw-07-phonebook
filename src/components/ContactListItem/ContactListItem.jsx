@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { WrapName } from './ContactListItem.styled';
 import { deleteContact } from 'redux/operations';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
